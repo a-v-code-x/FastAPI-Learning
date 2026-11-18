@@ -1,0 +1,87 @@
+
+# RANGMANCH-REVIEW
+
+A FastAPI project directory created as part of my backend development learning journey.
+
+This folder contains the initial application structure for developing a backend application using Python, FastAPI, and SQLModel.
+
+## Tech Stack
+
+- Python
+- FastAPI
+- Uvicorn
+- SQLModel
+
+## Project Structure
+
+```text
+RANGMANCH-REVIEW/
+│
+├── main.py
+├── models.py
+├── requirements.txt
+└── README.md
+```
+
+## File Description
+
+| File | Description |
+|---|---|
+| main.py | Intended entry point for the FastAPI application |
+| models.py | Intended location for application data models |
+| requirements.txt | Python dependencies |
+
+## Installation
+
+Navigate to the project directory:
+
+```bash
+cd RANGMANCH-REVIEW
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate the environment on macOS/Linux:
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Dependencies
+
+```text
+fastapi
+uvicorn[standard]
+sqlmodel
+```
+
+## Development Status
+
+**Status: Initial Setup**
+
+The supplied project currently contains the initial file structure. Implementation of the application logic, data models, database configuration, and API endpoints is pending.
+
+## Planned Development
+
+- Set up the FastAPI application.
+- Define application data models using SQLModel.
+- Configure database connectivity.
+- Implement API endpoints.
+- Add request validation and exception handling.
+- Test API functionality using Swagger UI.
+
+## Author
+
+**Arpit Vishwakarma**
+
+[GitHub](https://github.com/a-v-code-x)
