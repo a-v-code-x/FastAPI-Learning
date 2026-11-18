@@ -1,0 +1,228 @@
+
+# Indian PIN Code Lookup API
+
+A REST API built using **Python and FastAPI** that retrieves location information from Indian PIN codes.
+
+The API allows users to find city, state, and district details using a six-digit PIN code. It also supports bulk PIN code lookup through a single API request.
+
+## Features
+
+- Single PIN code lookup.
+- Bulk PIN code lookup.
+- Six-digit PIN code validation.
+- Custom exception handling.
+- Structured JSON responses.
+- Pydantic request and response models.
+- Interactive API documentation using Swagger UI.
+
+## Tech Stack
+
+- Python
+- FastAPI
+- Pydantic
+- Uvicorn
+
+## Project Structure
+
+```text
+02pincode/
+│
+├── main.py
+├── models.py
+├── data.py
+├── exceptions.py
+├── requirements.txt
+└── README.md
+```
+
+## File Description
+
+| File | Description |
+|---|---|
+| main.py | Main FastAPI application and API endpoints |
+| models.py | Pydantic models and validation |
+| data.py | Sample Indian PIN code dataset |
+| exceptions.py | Custom exceptions and exception handlers |
+| requirements.txt | Project dependencies |
+
+## Installation
+
+Clone the repository and navigate to this folder.
+
+```bash
+cd 02pincode
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv venv
+```
+
+Activate it on macOS/Linux:
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+## Run the Application
+
+```bash
+uvicorn main:app --reload
+```
+
+The application will run at:
+
+```text
+http://127.0.0.1:8000
+```
+
+## API Endpoints
+
+### 1. Root Endpoint
+
+**GET /**
+
+Returns a welcome message.
+
+Example response:
+
+```json
+{
+  "message": "Pincode lookup API"
+}
+```
+
+### 2. Single PIN Code Lookup
+
+**GET /pincode/{code}**
+
+Retrieves location information using a PIN code.
+
+Example request:
+
+```text
+GET /pincode/110001
+```
+
+Example response:
+
+```json
+{
+  "pincode": "110001",
+  "city": "New Delhi",
+  "state": "Delhi",
+  "district": "Central Delhi"
+}
+```
+
+**Error Handling:**
+
+- 400 Bad Request: Invalid PIN code format.
+- 404 Not Found: PIN code does not exist in the dataset.
+
+### 3. Bulk PIN Code Lookup
+
+**POST /pincode/bulk**
+
+Accepts multiple PIN codes in a single request.
+
+Example request body:
+
+```json
+{
+  "pincode": [
+    "110001",
+    "400001",
+    "560001",
+    "999999"
+  ]
+}
+```
+
+Example response:
+
+```json
+{
+  "status": "success",
+  "found": 3,
+  "not_found": 1,
+  "result": [
+    {
+      "pincode": "110001",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "district": "Central Delhi"
+    },
+    {
+      "pincode": "400001",
+      "city": "Mumbai",
+      "state": "Maharashtra",
+      "district": "Mumbai City"
+    },
+    {
+      "pincode": "560001",
+      "city": "Bangalore",
+      "state": "Karnataka",
+      "district": "Bangalore Urban"
+    }
+  ],
+  "missing": [
+    "999999"
+  ]
+}
+```
+
+## Validation Rules
+
+The API validates incoming PIN code data.
+
+- PIN code must contain exactly six digits.
+- Bulk requests must contain at least one PIN code.
+- Maximum 20 PIN codes are allowed in a bulk request.
+- Every PIN code in a bulk request must contain exactly six digits.
+
+## Exception Handling
+
+Custom exceptions are implemented to handle:
+
+- `PinCodeNotFoundError`
+- `InvalidPinCodeError`
+
+These exceptions return meaningful JSON error responses with appropriate HTTP status codes.
+
+## API Documentation
+
+After running the application, visit:
+
+- Swagger UI: http://127.0.0.1:8000/docs
+- ReDoc: http://127.0.0.1:8000/redoc
+
+## Dataset Information
+
+The project currently uses a sample in-memory dictionary containing 15 Indian PIN code records.
+
+It is not connected to an external database or a complete official PIN code database.
+
+## Learning Outcomes
+
+Through this project, I practiced:
+
+- Building REST APIs using FastAPI.
+- Working with GET and POST requests.
+- Using Pydantic for data validation.
+- Creating custom exception handlers.
+- Handling single and bulk API requests.
+- Returning structured JSON responses.
+
+## Author
+
+**Arpit Vishwakarma**
+
+[GitHub](https://github.com/a-v-code-x)
